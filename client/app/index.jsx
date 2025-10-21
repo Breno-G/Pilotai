@@ -1,8 +1,7 @@
 import { router } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { BlackButton } from "../components/BlackButton.jsx";
-import { PurpleButton } from "../components/PurpleButton.jsx";
+import { DefaultButton } from "../components/DefaultButton";
 
 export default function Index() {
   return (
@@ -11,13 +10,18 @@ export default function Index() {
         PILOTAÍ
       </Text>
       <View style={styles.actions}>
-        <PurpleButton 
+        <DefaultButton 
         onPress={() => router.navigate('/cadastro')}
-        display= "Cadastre-se"/>
+        display= "Cadastre-se"
+        color = "#6E17EB"/>
         <Text style={{ color: "#909090", fontSize: 30, textAlign: "center" }}>
           ou
         </Text>
-        <BlackButton display = "Entrar"></BlackButton>
+        <DefaultButton 
+        onPress={() => router.navigate()}
+        display = "Entrar"
+        color = "#000"
+        />
       </View>
         <Image source={require("../assets/images/map-and-car.png")} />
     </View >
@@ -35,13 +39,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 50,
     textAlign: "center",
-
   },
   actions: {
     width: "60%",
     gap: 20,
   },
-
-
 });
 

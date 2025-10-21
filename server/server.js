@@ -9,8 +9,8 @@ async function main() {
 
     try{
         await client.connect();
-
-        await listDatabases(client);
+        console.log("MongoDB conectado")
+       // await listDatabases(client);
     } catch (e) {
         console.error('Erro de conexão', e);
     } finally {
