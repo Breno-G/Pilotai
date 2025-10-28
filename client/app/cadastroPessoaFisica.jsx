@@ -1,9 +1,12 @@
 import { DefaultButton } from '@/components/DefaultButton';
+import axios from "axios";
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
 import { MaskedTextInput } from 'react-native-mask-text';
 import validator from 'validator';
+
+const API_BASE_URL = process.env.EXPO_API_BASE_URL
 
 export default function CadastroPessoal() {
   const {
@@ -28,9 +31,14 @@ export default function CadastroPessoal() {
   }, [isSubmitSuccessful]);
 
 
-  const aoSubmeter = (dados) => {
-    console.log(dados);
-    Alert.alert('Cadastro realizado!', JSON.stringify(dados, null, 2));
+  const aoSubmeter = async (dados) => {
+    try {
+      const resposta = await axios.post(`${API_BASE_URL}/api/usuarios`, dados);
+      Alert.alert("Sucesso!", resposta.data.message);
+    } catch (erro) {
+      console.error(erro);
+      Alert.alert("Erro", "Não foi possível enviar os dados ao servidor")
+    }
   };
 
   const validarEmail = (valor) => {
@@ -163,7 +171,7 @@ export default function CadastroPessoal() {
           <Text style={styles.error}>{errors.senhaVerificada.message}</Text>
         )}
       </View>
-      <View style = {styles.container}>
+      <View style={styles.container}>
         <DefaultButton
           onPress={handleSubmit(aoSubmeter)}
           display="Avançar"
@@ -182,7 +190,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginBottom: 20,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   label: {
     fontSize: 20,

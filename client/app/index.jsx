@@ -10,20 +10,20 @@ export default function Index() {
         PILOTAÍ
       </Text>
       <View style={styles.actions}>
-        <DefaultButton 
-        onPress={() => router.navigate('/cadastro')}
-        display= "Cadastre-se"
-        color = "#6E17EB"/>
+        <DefaultButton
+          onPress={() => router.navigate("/cadastroPessoaFisica")}
+          display="Cadastre-se"
+          color="#6E17EB" />
         <Text style={{ color: "#909090", fontSize: 30, textAlign: "center" }}>
           ou
         </Text>
-        <DefaultButton 
-        onPress={() => router.navigate()}
-        display = "Entrar"
-        color = "#000"
+        <DefaultButton
+          onPress={() => router.navigate("/login")}
+          display="Entrar"
+          color="#000"
         />
       </View>
-        <Image source={require("../assets/images/map-and-car.png")} />
+      <Image source={require("../assets/images/map-and-car.png")} />
     </View >
   );
 }

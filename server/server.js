@@ -9,8 +9,7 @@ async function main() {
 
     try{
         await client.connect();
-        console.log("MongoDB conectado")
-       // await listDatabases(client);
+        console.log("MongoDB conectado");
     } catch (e) {
         console.error('Erro de conexão', e);
     } finally {
@@ -19,12 +18,3 @@ async function main() {
 }
 
 main().catch(console.error)
-
-async function listDatabases(client){
-    const databasesList =  await client.db().admin().listDatabases;
-
-    console.log("Databases: ");
-    databasesList.databases.forEach(db => {
-        console.log(`- $ {db.name}`);  
-    })
-}
